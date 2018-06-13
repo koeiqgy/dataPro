@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--<html xmlns:th="http://www.w3.org/1999/xhtml">-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>hello</title>
+</head>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td class="success">标题</td>
+        <td class="success">姓名</td>
+        <td class="danger">年龄</td>
+        <td class="warning">用户</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each=" user : ${msgList}">
+        <td th:text="${msg}"></td>
+        <td  th:text="${user.name}"></td>
+        <td th:text="${user.age}"></td>
+        <td><a href="/user/getUser">users</a> </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>

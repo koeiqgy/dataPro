@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>hello</title>
+</head>
+<body>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td th:text="${title}"></td>
+            <td th:text="姓名2">姓名</td>
+            <td class="warning">性别</td>
+            <td class="danger">年龄</td>
+            <td class="info">角色</td>
+            <td>列表</td>
+            <td>列表2</td>
+            <td>添加</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr >
+            <td >1 </td>
+            <td >2 </td>
+            <td> 3 </td>
+            <td >4</td>
+            <td >5</td>
+            <td><a href="/user/getUserList">List</a></td>
+            <td><a href="/user/getUserList/10">List</a></td>
+            <td><a href="/user/addUserView">addUser</a></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

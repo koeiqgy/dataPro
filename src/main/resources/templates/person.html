@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--<html xmlns:th="http://www.w3.org/1999/xhtml">-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>hello</title>
+</head>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td th:text="${msg}">标题</td>
+        <td  th:text="${tel}"  class="success">姓名</td>
+        <td class="warning">性别</td>
+        <td class="danger">年龄</td>
+        <td class="info">角色</td>
+        <td class="info">用户</td>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr >
+        <td >1 </td>
+        <td >2 </td>
+        <td> 3 </td>
+        <td >4</td>
+        <td >5</td>
+        <td><a href="/user/getUser">users</a> </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>
