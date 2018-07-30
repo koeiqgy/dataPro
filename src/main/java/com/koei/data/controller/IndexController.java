@@ -1,6 +1,10 @@
 package com.koei.data.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.koei.dada.pojo.SysUser;
 import com.koei.dada.pojo.User;
+import com.koei.data.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,45 +16,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/index")
-
+@RequestMapping("")
 public class IndexController {
-    @RequestMapping(value="/home",method = RequestMethod.GET)
-    public String index(Model modelMap) {
-        ArrayList<User> list =new ArrayList<User>();
-        list.add(new User(1,"paul",23));
-        list.add(new User(2,"tom",25));
-        list.add(new User(3,"jimmy",28));
-
-        modelMap.addAttribute("msgList",list);
-        modelMap.addAttribute("msg","测试属性");
+    @Autowired
+    private UserService userService;
+    @RequestMapping("")
+    public String index(){
         return "index";
     }
-
-    @RequestMapping(value="home2",method=RequestMethod.GET)
-    public ModelAndView index2(){
-            ModelAndView mol=new ModelAndView("index");
-            mol.addObject("msg","hello springboot");
-            return mol;
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
     }
 
-    @RequestMapping(value="/getJson",method=RequestMethod.GET)
+    @RequestMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+    @RequestMapping("/loginAction")
     @ResponseBody
-    public String getJson(){
-        return "hello";
+    public JSONObject loginAction(){
+        JSONObject result=new JSONObject();
+        User user=new User(1,"tom",28);
+        result.put("success","1");
+        result.put("user",user);
+        return result;
     }
 
-    @RequestMapping(value="/getList",method=RequestMethod.GET)
+    @RequestMapping("/registerAction")
     @ResponseBody
-    public List<User> getList(){
-          List listData =new ArrayList<User>();
-          User user=new User(1,"paul1",25);
-          User user2=new User(2,"paul2",26);
-          User user3=new User(3,"paul3",27);
-
-          listData.add(user);
-          listData.add(user2);
-          listData.add(user3);
-          return listData;
+    public JSONObject register(SysUser user){
+        JSONObject result= new JSONObject();
+        SysUser ret_user=userService.add(user);
+        if(ret_user!=null){
+            result.put("success","1");
+            result.put("user",ret_user);
+        }else{
+            result.put("success","-1");
+        }
+        return result;
     }
+
 }
+

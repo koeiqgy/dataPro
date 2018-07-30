@@ -1,23 +1,14 @@
-package com.koei.data.controller;
+package com.koei;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
-@RestController
+//@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @SpringBootApplication
+@ServletComponentScan("com.utils")
 public class DataProApplication {
-
-	@RequestMapping("/")
-	public String index(){
-		return "Hello Spring Boot World";
-	}
-
-
 	public static void main(String[] args) {
-
 		SpringApplication.run(DataProApplication.class, args);
-
 	}
 }

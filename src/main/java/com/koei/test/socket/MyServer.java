@@ -29,7 +29,7 @@ public class MyServer {
                 //str= bf.readLine();
 
                 while((str=bf.readLine())!=null){
-                    if("end".equals(str)) break;
+                    //if("end".equals(str)) break;
                     System.out.println(str);
                 }
 

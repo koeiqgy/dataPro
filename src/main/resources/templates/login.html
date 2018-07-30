@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--<html xmlns:th="http://www.w3.org/1999/xhtml">-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>登陆</title>
+    <script src="/js/jquery-1.9.1.min.js"></script>
+    <script src="/js/login.js"></script>
+    <link rel="stylesheet" href="/css/login.css"/>
+    <script>
+        $(function(){
+            //alert('initial');
+        });
+    </script>
+</head>
+
+<body>
+    <form action="/login">
+        <div>
+            <input type="text" name="uname" />
+        </div>
+
+        <div>
+            <input type="password" name="pwd" />
+        </div>
+
+        <div>
+            <button id="sub" type="button">submit</button>
+        </div>
+
+        <div>
+            <a href="/register" >register</a>
+        </div>
+    </form>
+
+
+</body>
+
+</html>
