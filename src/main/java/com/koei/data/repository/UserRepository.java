@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
  * @Date: 2018/7/30 15:53
  * @Description:
  */
+@Repository
 public interface UserRepository  extends JpaRepository<SysUser, String> {
 
 

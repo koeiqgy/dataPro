@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 /**
  * @Auther: paul
@@ -27,9 +28,12 @@ public class MyFilter  implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request= (HttpServletRequest) servletRequest;
         HttpServletResponse response= (HttpServletResponse) servletResponse;
+        filterChain.doFilter(request,response);
+/*        HttpServletRequest request= (HttpServletRequest) servletRequest;
+        HttpServletResponse response= (HttpServletResponse) servletResponse;
         response.setCharacterEncoding("UTF-8");
         String url_path = request.getServletPath();
-        String token=request.getParameter("token");
+        String  token=request.getHeader("Authorization");
         if (url_path.matches("\\S*(login*)S*$") || url_path.endsWith("js")|| url_path.endsWith("css")|| url_path.contains("login") || url_path.contains("register") ){
             filterChain.doFilter(request,response);
         }else{
@@ -37,9 +41,17 @@ public class MyFilter  implements Filter {
                 response.setContentType("application/json; charset=utf8");
                 response.sendRedirect("/login");
             }else{
-                filterChain.doFilter(request,response);
+                String verify_token=Token.verifyToken(token);
+                if("-1".equals(verify_token)){
+                    response.setContentType("application/json; charset=utf8");
+                    response.sendRedirect("/login");
+                }else{
+                    Map  map=Token.getDataByTokenSubject(verify_token);
+                    System.out.println(map);
+                    filterChain.doFilter(request,response);
+                }
             }
-        }
+        }*/
     }
 
     @Override

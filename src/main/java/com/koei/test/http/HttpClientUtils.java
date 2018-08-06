@@ -5,6 +5,7 @@ package com.koei.test.http;
  * @Date: 2018/6/5 10:29
  * @Description:
  */
+import com.alibaba.fastjson.JSONObject;
 import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -16,10 +17,12 @@ import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContexts;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -31,6 +34,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -98,7 +102,46 @@ public class HttpClientUtils {
 
     public static void main(String args[]) throws Exception {
 
-        HttpClientUtils.class.newInstance().post();
+  /*    String url="setConfig";
+        JSONObject obj=new JSONObject();
+        obj.put("appId", "1400118134");
+        obj.put("nonce", "333");
+        obj.put("requestId", "This is a test ");
+        obj.put("isRecord", "1");
+        obj.put("notifyMask", "16191");
+        obj.put("statusUrl", "http://125.211.166.247:48088/ssta_call/call/status");
+        obj.put("billUrl", "http://125.211.166.247:48088/ssta_call/call/bill");
+        obj.put("recordUrl", "http://125.211.166.247:48088/ssta_call/call/record");
+        obj.put("dtmfUrl", "http://125.211.166.247:48088/ssta_call/call/dtmf");
+        obj.put("callStartUrl", "http://125.211.166.247:48088/ssta_call/call/callStart");
+        obj.put("eventEndUrl", "http://125.211.166.247:48088/ssta_call/call/eventEnd");*/
+
+
+        String url="createRoom";
+        JSONObject obj=new JSONObject();
+        obj.put("appId", "1400118134");
+        obj.put("nonce", "333");
+        obj.put("requestId", "This is a test ");
+        JSONObject objatt=new JSONObject();
+        objatt.put("userId","007");
+        objatt.put("userType","1");
+        objatt.put("phone","008618182813107");
+        obj.put("attendee", objatt);
+
+
+
+/*      obj.put("isRecord", "1");
+        obj.put("notifyMask", "16191");
+        obj.put("statusUrl", "http://125.211.166.247:48088/ssta_call/call/status");
+        obj.put("billUrl", "http://125.211.166.247:48088/ssta_call/call/bill");
+        obj.put("recordUrl", "http://125.211.166.247:48088/ssta_call/call/record");
+        obj.put("dtmfUrl", "http://125.211.166.247:48088/ssta_call/call/dtmf");
+        obj.put("callStartUrl", "http://125.211.166.247:48088/ssta_call/call/callStart");
+        obj.put("eventEndUrl", "http://125.211.166.247:48088/ssta_call/call/eventEnd");*/
+
+
+
+        HttpClientUtils.class.newInstance().post2(url,obj);
 /*
         Map<String, String> map = new HashMap<String, String>();
         *//*
@@ -178,13 +221,43 @@ public class HttpClientUtils {
         content.setContentEncoding("UTF-8");
         httppost.setEntity(content);
         */
+
         // 创建默认的httpClient实例.
         CloseableHttpClient httpclient = HttpClients.createDefault();
         // 创建httppost
-        HttpPost httppost = new HttpPost("http://woseek.com");
+        String post_url="http://pstn.avc.qcloud.com/cc/setConfig?id=ec_cc";
+        //HttpPost httppost = new HttpPost("http://woseek.com");
+        HttpPost httppost = new HttpPost(post_url);
         // 创建参数队列
         List<NameValuePair> formparams = new ArrayList<NameValuePair>();
-        formparams.add(new BasicNameValuePair("type", "house"));
+/*        JSONObject obj=new JSONObject();
+        obj.put("appId", "1256294446");
+        obj.put("nonce", "333");
+        obj.put("requestId", "This is a test ");
+        obj.put("isRecord", "0");
+        obj.put("notifyMask", "16191");
+        obj.put("statusUrl", "http://125.211.166.247:48088/ssta_call/call/status");
+        obj.put("billUrl", "http://125.211.166.247:48088/ssta_call/call/bill");
+        obj.put("recordUrl", "http://125.211.166.247:48088/ssta_call/call/record");
+        obj.put("dtmfUrl", "http://125.211.166.247:48088/ssta_call/call/dtmf");
+        obj.put("callStartUrl", "http://125.211.166.247:48088/ssta_call/call/callStart");
+        obj.put("eventEndUrl", "http://125.211.166.247:48088/ssta_call/call/eventEnd");*/
+
+        //formparams.add(new BasicNameValuePair(obj.toJSONString()));
+
+
+        formparams.add(new BasicNameValuePair("appIds", "1256294446"));
+        formparams.add(new BasicNameValuePair("nonce", "333"));
+        formparams.add(new BasicNameValuePair("requestId", "This is a test "));
+        formparams.add(new BasicNameValuePair("isRecord", "0"));
+        formparams.add(new BasicNameValuePair("notifyMask", "16191"));
+        formparams.add(new BasicNameValuePair("statusUrl", "http://125.211.166.247:48088/ssta_call/call/status"));
+        formparams.add(new BasicNameValuePair("billUrl", "http://125.211.166.247:48088/ssta_call/call/bill"));
+        formparams.add(new BasicNameValuePair("recordUrl", "http://125.211.166.247:48088/ssta_call/call/record"));
+        formparams.add(new BasicNameValuePair("dtmfUrl", "http://125.211.166.247:48088/ssta_call/call/dtmf"));
+        formparams.add(new BasicNameValuePair("callStartUrl", "http://125.211.166.247:48088/ssta_call/call/callStart"));
+        formparams.add(new BasicNameValuePair("eventEndUrl", "http://125.211.166.247:48088/ssta_call/call/eventEnd"));
+
         UrlEncodedFormEntity uefEntity;
         try {
             uefEntity = new UrlEncodedFormEntity(formparams, "UTF-8");
@@ -302,6 +375,30 @@ public class HttpClientUtils {
             }
         }
     }
+
+    public void post2(String url, JSONObject obj){
+        DefaultHttpClient httpClinet=new DefaultHttpClient();
+        String post_url="http://pstn.avc.qcloud.com/cc/"+url+"?id=cc_zenithsafe";
+        HttpPost httpPost=new HttpPost(post_url);
+        httpPost.addHeader("Content-type","application/json; charset=utf-8");
+        httpPost.addHeader("Accept","application/json");
+        httpPost.setEntity(new StringEntity(obj.toJSONString(),Charset.forName("UTF-8")));
+        try {
+            HttpResponse result= httpClinet.execute(httpPost);
+            System.out.println("code= "+ result.getStatusLine().getStatusCode());
+            //if(result.getStatusLine().getStatusCode()==200){
+                String str="";
+                   str=EntityUtils.toString(result.getEntity());
+                   System.out.println(str);
+            //}
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+        }
+    }
+
+
+
 
 
     /**

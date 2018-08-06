@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService {
-    @Autowired
+/*    @Autowired
     private UserRepository userRepository;
 
     public SysUser add(SysUser sysuser){
         SysUser sysUser= userRepository.save(sysuser);
         return sysUser;
-    }
+    }*/
 
 }
