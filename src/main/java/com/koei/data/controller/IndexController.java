@@ -26,7 +26,7 @@ public class IndexController {
         return "login";
     }
 
-    @RequestMapping("/calll")
+    @RequestMapping("/calllView")
     public String call(){
         return "call";
     }

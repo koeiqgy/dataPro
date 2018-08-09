@@ -14,7 +14,22 @@
             //alert('initial');
             $("#tel").click(function(){
                  var jquery_obj=$(this);
-                 console.log(jquery_obj.html());
+                 var telNum=jquery_obj.html();
+                $.ajax({
+                    type: "post",
+                    url: "/call/callAction",
+                    data:{phone:telNum},
+                    dataType:"json",
+                    beforeSend: function(request) {
+                        //request.setRequestHeader("Authorization", token);
+                    },
+                    success:function(data){
+                        console.log("return data");
+                        console.log(data);
+                    }
+                });
+                 //$.ajax()
+                 //console.log(jquery_obj.html());
                 //alert("1234");
             });
         });

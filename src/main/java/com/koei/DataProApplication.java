@@ -11,7 +11,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 @ServletComponentScan("com.utils")
 public class DataProApplication {
 	public static void main(String[] args) throws Exception{
-		//SpringApplication.run(DataProApplication.class, args);
+		SpringApplication.run(DataProApplication.class, args);
 		//HttpClientUtils.class.newInstance().post2();
 	}
 }

@@ -1,3 +1,4 @@
+/*
 package com.koei.test.http;
 
 import org.apache.http.*;
@@ -42,10 +43,12 @@ import java.util.logging.Logger;
 public class SimpleClient {
     //private static Logger logger = Logger.getLogger(HttpUtil.class);
 
-    /**
+    */
+/**
      * get请求
      * @return
-     */
+     *//*
+
     public static String doGet(String url) {
         try {
             HttpClient client = new DefaultHttpClient();
@@ -53,9 +56,13 @@ public class SimpleClient {
             HttpGet request = new HttpGet(url);
             HttpResponse response = client.execute(request);
 
-            /**请求发送成功，并得到响应**/
+            */
+/**请求发送成功，并得到响应**//*
+
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                /**读取服务器返回过来的json字符串数据**/
+                */
+/**读取服务器返回过来的json字符串数据**//*
+
                 String strResult = EntityUtils.toString(response.getEntity());
 
                 return strResult;
@@ -70,12 +77,14 @@ public class SimpleClient {
 
 
 
-    /**
+    */
+/**
      * post请求(用于key-value格式的参数)
      * @param url
      * @param params
      * @return
-     */
+     *//*
+
     public static String doPost(String url, Map params){
 
         BufferedReader in = null;
@@ -130,12 +139,14 @@ public class SimpleClient {
 
 
 
-    /**
+    */
+/**
      * post请求（用于请求json格式的参数）
      * @param url
      * @param params
      * @return
-     */
+     *//*
+
     public static String doPost(String url, String params)  {
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -182,13 +193,15 @@ public class SimpleClient {
 
 
 
-    /**
+    */
+/**
      * 中转文件
      *
      * @param file
      *            上传的文件
      * @return 响应结果
-     */
+     *//*
+
     public String httpClientUploadFile(MultipartFile file) {
         final String remote_url = "http://192.168.1.99:8080/demo/file/upload";// 第三方服务器请求地址
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -374,3 +387,4 @@ public class SimpleClient {
         System.out.println(ret);
     }
 }
+*/

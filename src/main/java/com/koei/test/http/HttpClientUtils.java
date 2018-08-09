@@ -376,7 +376,7 @@ public class HttpClientUtils {
         }
     }
 
-    public void post2(String url, JSONObject obj){
+    public String post2(String url, JSONObject obj){
         DefaultHttpClient httpClinet=new DefaultHttpClient();
         String post_url="http://pstn.avc.qcloud.com/cc/"+url+"?id=cc_zenithsafe";
         HttpPost httpPost=new HttpPost(post_url);
@@ -390,9 +390,11 @@ public class HttpClientUtils {
                 String str="";
                    str=EntityUtils.toString(result.getEntity());
                    System.out.println(str);
+                   return str;
             //}
         } catch (IOException e) {
             e.printStackTrace();
+            return "-1";
         } finally {
         }
     }
